@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CardViewAppLock"
+    android:layout_margin="20dp"
+    card_view:cardCornerRadius="6dp"
+    android:alpha=".8"
+    app:cardBackgroundColor="@color/colorPrimar"
+    android:background="@color/colorPrimary"
+    android:layoutDirection="ltr">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <Switch
+            android:id="@+id/togAppLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textOff="Unlock"
+            android:textOn="Lock"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAppName"
+            android:text="AppName"
+            android:layout_centerVertical="true"
+            android:textSize="15sp"
+            android:layout_toRightOf="@+id/togAppLock"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            >
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/edtStartTime"
+                android:hint="Start"
+                android:textSize="15sp"
+                android:textAlignment="center"/>
+
+
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/edtFinishTime"
+                android:hint="Finish"
+                android:textSize="15sp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

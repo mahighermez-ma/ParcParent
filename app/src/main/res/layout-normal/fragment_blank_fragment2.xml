@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment2"
+    android:background="@drawable/registerpage">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ScrollView
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="17%"
+        app:layout_marginTopPercent="80%"
+        app:layout_marginLeftPercent="5%">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="17sp"
+            android:textColor="#fff"
+            android:text="1.First you should register \n
+2.So you should type your user name and password \n
+3.You can type your email if you want \n
+4.Tap on register. if it says 'parent already exist' \n you should change username.
+"
+            />
+    </ScrollView>
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

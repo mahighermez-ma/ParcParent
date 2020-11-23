@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".pictureActivity"
+    android:background="@drawable/backgradiant"
+    android:layoutDirection="ltr">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+
+        <Button
+            android:id="@+id/btnShowTakenPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btnbackwhite"
+            android:onClick="btnShowPhoto"
+            android:padding="10dp"
+            android:text="@string/showphoto"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            tools:ignore="OnClick"
+
+            />
+
+        <TextView
+            android:id="@+id/txt_picRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_below="@id/btnShowTakenPic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="@string/request_for_take_picture"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_picRequest"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/btnFrontCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_below="@+id/txt_picRequest"
+                android:layout_marginRight="40dp"
+                android:onClick="requestFrontCamera"
+                android:text="@string/requestFrontCamera"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:theme="@style/PrimaryFlatButton"
+                tools:ignore="OnClick"
+                android:background="@drawable/btnbackwhite"
+                android:padding="10dp"/>
+
+            <Button
+                android:id="@+id/btnRearCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_below="@+id/txt_picRequest"
+                android:layout_alignEnd="@+id/txt_picRequest"
+                android:layout_marginTop="0dp"
+                android:onClick="requestRearCamera"
+                android:text="@string/requestRearCamera"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:theme="@style/PrimaryFlatButton"
+                tools:ignore="OnClick"
+                android:background="@drawable/btnbackwhite"
+                android:padding="10dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

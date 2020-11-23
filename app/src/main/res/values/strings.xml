@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Kids Gaurd</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="btnSMS">SMS</string>
+    <string name="btnContact">Contact</string>
+    <string name="hintPhone">User Name</string>
+    <string name="hintEmail">Email Address</string>
+    <string name="hintPassword">Password</string>
+    <string name="requestFrontCamera">Front camera</string>
+    <string name="requestRearCamera">Rear camera</string>
+    <string name="showphoto">Show requested picture</string>
+    <string name="showVideo">Show captured video</string>
+    <string name="btnphoto">show the requested picture</string>
+    <string name="err_phone">Please enter your username</string>
+    <string name="err_email">Please enter valid email</string>
+    <string name="err_password">Please enter password</string>
+    <string name="hinttitle">Please enter title</string>
+    <string name="hinttext">Please enter text</string>
+    <string name="login_successful">Login successfully</string>
+    <string name="register_successful">Register successfully</string>
+    <string name="hintchildName">enter your child name</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnRegister">Register</string>
+    <string name="google">AIzaSyBq_pnF8hlNYPH4Es1y2KJmyVtsTOM2l4E</string>
+    <!-- welcome.xml -->
+    <string name="btnCall">Call</string>
+    <string name="btnCurrentApp">Current App</string>
+    <string name="btnInstalledPackage">Installed Package</string>
+    <string name="btnPhoneLock">Phone Lock</string>
+    <string name="btnBlockApp">Block App</string>
+    <string name="btnGPS">GPS</string>
+    <string name="txtSMSList">SMS List </string>
+    <string name="txtContactList">Contact List </string>
+    <string name="txtCallList">Call List </string>
+    <string name="txtInstallPackageList">Installed Package List </string>
+
+
+    <string name="txtAddChild">Please Add Kid</string>
+    <string name="hintAddChildName">Add Kid Name</string>
+    <string name="hintIMEI">IMEI</string>
+
+    <string name="btnAddChild"> Add Kid </string>
+    <string name="txtPhoneProfileHint"> Phone Number </string>
+    <string name="txtEmailProfileHint">Email</string>
+    <string name="txtPassProfileHint">Password</string>
+    <string name="btnProfile"> Send </string>
+
+    <string name="smsVerCodeHint">please insert code</string>
+    <string name="btnVerCodeOk">Verify</string>
+    <string name="txtSendSMSAgain">Send SMS Again</string>
+
+    <!-- Actionbar menu string -->
+    <string name="setting_action"> Setting </string>
+    <string name="search_action"> Search </string>
+    <string name="report_action"> Report </string>
+
+
+    <!-- get confirm for Exit-->
+    <string name="titleExitConfirm">Warning</string>
+    <string name="bodyExitConfirm">Are you sure to exit?</string>
+    <string name="acceptExitConfirm">Yes</string>
+    <string name="declineExitConfirm">No</string>
+    <string name="title_activity_maps">Map</string>
+    <!-- Manifest labales-->
+    <string name="lableAboutApp">Application information</string>
+    <string name="lableAboutUs">develope team</string>
+    <string name="labaleAddChild">Add kids</string>
+    <string name="labaleBlockApp">Block Apps</string>
+    <string name="labaleCurrApp">Current App</string>
+    <string name="labalegetChild">Choose Child</string>
+    <string name="lablemaps">Location</string>
+    <string name="labalePhoneLock">Lock Phone</string>
+    <string name="labalePicture">Picture</string>
+    <string name="labaleProfile">Profile</string>
+    <string name="labaleWelco">Kids Guard</string>
+    <!-- structure-->
+    <string name="title">Structure for using Application</string>
+    <string name="teamdescbutton">View Site</string>
+    <string name="dlapp">Download Kid Guard KD app</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="whoisusing">Whose device is this? </string>
+    <string name="parent">Parent</string>
+    <string name="child">Kid</string>
+    <string name="request_for_take_picture">Request for taking a picture from:</string>
+    <string name="request_for_capture_video">Request for capturing video from:</string>
+    <string name="title_activity_maps2">Map</string>
+    <string name="request_for_record_voice">Request for record voice</string>
+    <string name="record_voice">Record voice</string>
+    <string name="play_voice_of_your_kid_device">Play voice of your kid device</string>
+    <string name="add_kid_code_explain">If you want to activate your kid\'s cellphone you\'ve added on the previous page, you should enter the above code on kids guard application that has installed on your kid\'s device otherwise, you won\'t access your kid\'s information</string>
+
+</resources>

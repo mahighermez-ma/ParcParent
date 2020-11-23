@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment4"
+    android:background="@drawable/addkids">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="17%"
+        app:layout_marginTopPercent="80%"
+        app:layout_marginLeftPercent="5%">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:text="1.Type your kid's name \n
+2.If you want to activate your kid device by him \n or her device's IMEI without getting code please type \n
+your kid device IMEI \n
+3.If you didn't type the IMEI you should get code. \n
+4.Tap on add kid button \n
+5.You should tap on 'Download kids guard apk' \n and get apk for your kid device \n
+6.If you want use this app you should install \n kids guard on your kid's device
+"
+        />
+</ScrollView>
+</androidx.percentlayout.widget.PercentRelativeLayout>

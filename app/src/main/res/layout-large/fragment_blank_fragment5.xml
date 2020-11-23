@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment5"
+    android:background="@drawable/exit">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="17%"
+        app:layout_marginTopPercent="80%"
+        app:layout_marginLeftPercent="5%">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:text="1.Tap on back button and exit from this app \n
+2.Install kids guard Application(that you \n downloaded) on your kid's device \n
+3.If you didn't choose above methods then \n you should follow these steps: \n
+4.Download Kids Guard application from \n google play on your kid's device \n
+5.On the first page you should tap on kid's \n image and download apk from there, \n then install the app.
+" />
+    </ScrollView>
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

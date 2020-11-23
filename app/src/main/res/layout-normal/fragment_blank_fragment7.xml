@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment7"
+    android:background="@drawable/parcchild">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="17%"
+        app:layout_marginTopPercent="80%"
+        app:layout_marginLeftPercent="5%">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="14sp"
+            android:textColor="#fff"
+            android:text="1.In this app you should tick the items that \n you want to check it \n
+2.If you typed IMEI in Kids Guard application, \n please tap on activeByCode button \n
+3.If you got the code please enter it. \n
+4.Now open application on your device \n
+"
+            />
+    </ScrollView>
+</androidx.percentlayout.widget.PercentRelativeLayout>

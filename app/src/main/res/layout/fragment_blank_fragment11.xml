@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BlankFragment11"
+    android:background="@drawable/navdrawer">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        app:layout_widthPercent="90%"
+        app:layout_heightPercent="17%"
+        app:layout_marginTopPercent="80%"
+        app:layout_marginLeftPercent="5%">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="6sp"
+        android:textColor="#fff"
+        android:text="If you want add other kids, please tap on add kids and doing Previous steps: \n
+
+1.Go to My kids \n
+2.Inactive current kid and active the other \n
+3.Then you can use the options that you have activated on your kid's device
+"
+        />
+    </ScrollView>
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

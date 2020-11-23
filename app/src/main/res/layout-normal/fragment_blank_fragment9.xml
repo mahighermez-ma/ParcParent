@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginpage"
+    tools:context=".BlankFragment9">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:text="1.Login by your user name and password \n
+2.Select your kid's name on the next page.
+"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        app:layout_heightPercent="17%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginTopPercent="80%"
+        app:layout_widthPercent="90%" />
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity"
+    android:layout_gravity="center"
+    android:layoutDirection="ltr">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtPhoneProfile"
+        android:layout_marginTop="15dp"
+        android:hint="@string/txtPhoneProfileHint"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="phone"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtEmailProfile"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edtPhoneProfile"
+        android:hint="@string/txtEmailProfileHint"
+        android:minEms="10"
+        android:inputType="textEmailAddress"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtPassProfile"
+        android:layout_below="@id/edtEmailProfile"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/txtPassProfileHint"
+        android:minEms="8"
+        android:inputType="textVisiblePassword"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnProfile"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/edtPassProfile"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

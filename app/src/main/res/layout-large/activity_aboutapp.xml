@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutAppActivity"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimary"
+    android:layoutDirection="ltr">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txtdescapp"
+        android:textColor="#fff"
+        android:textSize="24dp"
+        android:text="Kids Guard"
+        app:layout_marginTopPercent="7%"
+        android:fontFamily="@font/scriptmtbold"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_centerHorizontal="true"
+        app:layout_marginTopPercent="15%"
+        app:layout_marginRightPercent="13%"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTeamapp"
+            android:gravity="left"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:fontFamily="@font/verdana"
+            android:textColor="#fff"
+            android:lineSpacingExtra="10dp"
+            /></ScrollView>
+
+
+
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

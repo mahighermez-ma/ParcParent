@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/backgradiant"
+    android:layoutDirection="ltr"
+    >
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/tools"
+        android:id="@+id/CardViewGetChild"
+        card_view:cardCornerRadius="6dp"
+        android:alpha="1"
+        android:elevation="1000dp"
+        app:elevation="1000dp"
+        app:cardBackgroundColor="@color/colorPrimar"
+        android:background="#cfd1d1"
+        app:ignore="NamespaceTypo">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/linert"
+            android:layout_marginHorizontal="10dp">
+
+            <!--<Button-->
+                <!--android:id="@+id/btnOpenDrawer"-->
+                <!--android:layout_height="46dp"-->
+                <!--android:layout_width="55dp"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:onClick="btndrawer"-->
+                <!--android:layout_marginVertical="0dp"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:background="@drawable/hamberic"/>-->
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edtphonesearch"
+                    android:layout_width="305dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:ems="10"
+                    android:hint="Search numbers, names"
+                    android:padding="10dp"
+
+
+
+                    />
+
+                <ImageButton
+                    android:id="@+id/imgleftdra"
+                    android:layout_weight="1"
+                    style="?android:buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_search_black_24dp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/ic_search_black_24dp"
+                android:id="@+id/btnsearches"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+<androidx.recyclerview.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:id="@+id/recyclerViewDetailItem"
+    android:layoutAnimation="@anim/layout_animation_slide_from_left"
+    android:scrollbars="vertical"
+    />
+
+
+</LinearLayout>

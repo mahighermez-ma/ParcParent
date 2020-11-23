@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "247501699452",
+    "firebase_url": "https://my-projeappejdh.firebaseio.com",
+    "project_id": "my-projeappejdh",
+    "storage_bucket": "my-projeappejdh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247501699452:android:526832be5ef79e1b794cf9",
+        "android_client_info": {
+          "package_name": "pro.kidsgaurd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247501699452-igpv8ocsl6c5tla230lcbq3aietevamm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pro.kidsgaurd",
+            "certificate_hash": "d8cc51f4332985c9b45f15e7f25c6b023d37902c"
+          }
+        },
+        {
+          "client_id": "247501699452-ou8cps7pi40m3ni7tndsikl7p7hqsj3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq_pnF8hlNYPH4Es1y2KJmyVtsTOM2l4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247501699452-ou8cps7pi40m3ni7tndsikl7p7hqsj3h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

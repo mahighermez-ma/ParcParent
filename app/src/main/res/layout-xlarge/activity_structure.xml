@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.percentlayout.widget.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StructureActivity"
+    android:background="@color/colorPrimary"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:gravity="center_horizontal"
+        android:fontFamily="@font/scriptmtbold"
+        android:text="@string/title"
+        android:textColor="#fff"
+        android:textSize="23dp"
+        app:layout_marginTopPercent="5%"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textt"
+        android:gravity="left"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginRightPercent="5%"
+        android:fontFamily="@font/verdana"
+        android:textColor="#fff"
+        android:textSize="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/title"
+        android:lineSpacingExtra="10dp"
+        android:padding="7dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="go to app"
+        android:theme="@style/PrimaryFlatButton"
+        app:layout_marginBottomPercent="20%"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:onClick="btnApp"
+        tools:ignore="OnClick"
+        android:layout_alignParentBottom="true" />
+
+</androidx.percentlayout.widget.PercentRelativeLayout>

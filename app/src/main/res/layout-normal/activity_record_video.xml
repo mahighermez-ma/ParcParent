@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".pictureActivity"
+    android:background="@drawable/backgradiant"
+    android:layoutDirection="ltr">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
+
+
+        <Button
+            android:id="@+id/btnShowCapturedVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btnbackwhite"
+            android:onClick="btnShowVideo"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:text="@string/showVideo"
+            android:textAllCaps="false"
+            android:textSize="17sp"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:id="@+id/txt_videoRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_below="@id/btnShowCapturedVideo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="@string/request_for_capture_video"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_videoRequest"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/line1">
+
+            <Button
+                android:id="@+id/btnFrontVideoCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_below="@+id/txt_videoRequest"
+                android:onClick="requestFrontVideoCamera"
+                android:text="@string/requestFrontCamera"
+                android:textAllCaps="false"
+                android:theme="@style/PrimaryFlatButton"
+                tools:ignore="OnClick"
+                android:background="@drawable/btnbackwhite"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:textColor="#000"/>
+
+            <Button
+                android:id="@+id/btnRearVideoCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_below="@+id/txt_videoRequest"
+                android:layout_alignEnd="@+id/txt_videoRequest"
+                android:layout_marginTop="0dp"
+                android:onClick="requestRearVideoCamera"
+                android:text="@string/requestRearCamera"
+                android:textAllCaps="false"
+                android:theme="@style/PrimaryFlatButton"
+                tools:ignore="OnClick"
+                android:background="@drawable/btnbackwhite"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take capture in specific date"
+            android:textAllCaps="false"
+            android:layout_below="@+id/line1"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#000"
+            android:theme="@style/PrimaryFlatButton"
+            android:onClick="btnspicvid"
+            tools:ignore="OnClick"
+            android:background="@drawable/btnbackwhite"
+            android:padding="10dp"
+            android:id="@+id/btnspicvid"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/btnspicvid"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:id="@+id/line4"
+            >
+            <DatePicker
+                android:id="@+id/simpleDatePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:spinnersShown="false"
+                android:alpha="0"
+                android:padding="10dp"
+                android:layout_margin="30dp"/>
+            <TimePicker
+                android:id="@+id/timePicker1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/simpleDatePicker"
+                android:alpha="0"
+                android:layout_margin="30dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timePicker1"
+                android:onClick="btnsenddate"
+                tools:ignore="OnClick"
+                android:theme="@style/PrimaryFlatButton"
+                android:background="#F1BE06"
+                android:padding="5dp"
+                android:text="Record"
+                android:textAllCaps="false"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:alpha="0"
+                android:id="@+id/btnrec"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
