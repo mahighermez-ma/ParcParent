@@ -18,6 +18,7 @@ import java.util.Map;
 
 public class blockIns {
     public void insblock(final Context context, final String bloc){
+        int a=3;
         String url="https://im.kidsguard.pro/api/update-packagename/";
         StringRequest stringRequest=new StringRequest(Request.Method.POST,url,
                 new Response.Listener<String>() {
