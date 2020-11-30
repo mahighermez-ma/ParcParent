@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -29,7 +30,8 @@
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".RecordVoiceActivity" />
         <activity android:name=".imgGaleryActivity" />
         <activity android:name=".vidGaleryActivity" />
@@ -60,7 +62,7 @@
             android:name=".ExplainItemActivity"
             android:label=""
             android:parentActivityName=".WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CurrentAppActivity"
             android:label="@string/labaleCurrApp"
@@ -129,7 +131,9 @@
         <activity android:name=".RecordVideoActivity" />
         <activity android:name=".AddKidCodeActivity" />
         <activity android:name=".ShowVidActivity" />
-        <activity android:name=".imageActivity"></activity>
+        <activity android:name=".imageActivity" />
+        <activity android:name=".VideoCategoryActivity" />
+        <activity android:name=".VideoDateActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swpref"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <androidx.percentlayout.widget.PercentRelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,4 +45,4 @@
 
 
 
-</androidx.percentlayout.widget.PercentRelativeLayout>
+</androidx.percentlayout.widget.PercentRelativeLayout></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

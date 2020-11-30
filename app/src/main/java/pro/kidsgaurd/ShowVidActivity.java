@@ -8,11 +8,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.github.rtoshiro.view.video.FullscreenVideoLayout;
 
@@ -21,7 +25,8 @@ import java.io.IOException;
 
 public class ShowVidActivity extends AppCompatActivity {
     DownloadManager downloadManager;
-    FullscreenVideoLayout videoLayout;
+    VideoView simpleVideoView;
+    MediaController mediaControls;
     Uri videoUri = Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath()+"/Download/kidvideo.mp4");
 
     @Override
@@ -50,18 +55,34 @@ public class ShowVidActivity extends AppCompatActivity {
             @RequiresApi(api = 29)
             @Override
             public void onReceive(Context context, Intent intent) {
-                videoLayout = (FullscreenVideoLayout) findViewById(R.id.videoview);
-                videoLayout.setActivity(ShowVidActivity.this);
+                simpleVideoView = (VideoView) findViewById(R.id.simpleVideoView);
 
-
-
-                try {
-                    videoLayout.setVideoURI(videoUri);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
+                if (mediaControls == null) {
+                    // create an object of media controller class
+                    mediaControls = new MediaController(ShowVidActivity.this);
+                    mediaControls.setAnchorView(simpleVideoView);
                 }
+                // set the media controller for video view
+                simpleVideoView.setMediaController(mediaControls);
+                // set the uri for the video view
+                simpleVideoView.setVideoURI(videoUri);
+                // start a video
+                simpleVideoView.start();
+
+                // implement on completion listener on video view
+                simpleVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Toast.makeText(getApplicationContext(), "Thank You...!!!", Toast.LENGTH_LONG).show(); // display a toast when an video is completed
+                    }
+                });
+                simpleVideoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                    @Override
+                    public boolean onError(MediaPlayer mp, int what, int extra) {
+                        Toast.makeText(getApplicationContext(), "Oops An Error Occur While Playing Video...!!!", Toast.LENGTH_LONG).show(); // display a toast when an error is occured while playing an video
+                        return false;
+                    }
+                });
 
             }
         };

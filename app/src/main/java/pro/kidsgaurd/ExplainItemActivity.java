@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.text.Editable;
@@ -57,6 +58,7 @@ public class ExplainItemActivity extends AppCompatActivity {
     EditText edtphonesearch;
     private ImageButton imgleftdra;
     private String text;
+    SwipeRefreshLayout swpref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,15 @@ public class ExplainItemActivity extends AppCompatActivity {
         dialog = ProgressDialog.show(ExplainItemActivity.this, "please wait", "connecting to server...", true);
         recyclerViewDetail = (RecyclerView)findViewById(pro.kidsgaurd.R.id.recyclerViewDetailItem);
         Intent intent = getIntent();
-
+        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                swpref.setRefreshing(false);
+            }
+        });
 
         String msgIntent = intent.getStringExtra("IntentName");
 

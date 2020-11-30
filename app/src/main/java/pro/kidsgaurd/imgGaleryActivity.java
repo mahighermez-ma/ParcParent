@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -44,12 +45,22 @@ public class imgGaleryActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FloatingActionButton removefab;
     RecyclerviewImage dataAdapter;
+    private SwipeRefreshLayout swpref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_galery);
         removefab=(FloatingActionButton)findViewById(R.id.fab);
+        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                swpref.setRefreshing(false);
+            }
+        });
         showgalery();
         removefab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +141,7 @@ public class imgGaleryActivity extends AppCompatActivity {
         });
     }
     public void showgalery(){
+        Log.e("rererrrret", getctoken(imgGaleryActivity.this) );
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://im.kidsguard.pro/api/picture-detail/",
                 new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)

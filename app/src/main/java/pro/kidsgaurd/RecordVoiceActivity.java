@@ -5,10 +5,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import ir.hamsaa.persiandatepicker.Listener;
+import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
+import ir.hamsaa.persiandatepicker.util.PersianCalendar;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +23,9 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,10 +51,22 @@ public class RecordVoiceActivity extends AppCompatActivity {
     ArrayList<String> voiceurl=new ArrayList<String>();
     ArrayList<String> voiceNmae=new ArrayList<String>();
     RecyclerView recyclerViewgetvoice;
+    private SwipeRefreshLayout swpref;
+    private DateConverter converter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_voice);
+        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                swpref.setRefreshing(false);
+            }
+        });
         geturls(RecordVoiceActivity.this);
 
 
@@ -197,10 +217,33 @@ public class RecordVoiceActivity extends AppCompatActivity {
 
     }
     public void btnspicvid(View view){
-        DatePicker simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
+        PersianDatePickerDialog picker2 = new PersianDatePickerDialog(this)
+                .setPositiveButtonString("باشه")
+                .setNegativeButton("بیخیال")
+                //.setTypeFace(new Typeface())
+                .setActionTextColor(Color.GRAY)
+                .setListener(new Listener() {
+                    @Override
+                    public void onDateSelected(PersianCalendar persianCalendar) {
+                        converter = new DateConverter();
+                        converter.persianToGregorian(persianCalendar.getPersianYear(),persianCalendar.getPersianMonth(),persianCalendar.getPersianDay());
+                      //  Toast.makeText(this, persianCalendar.getPersianYear() + "/" + persianCalendar.getPersianMonth() + "/" + persianCalendar.getPersianDay(), Toast.LENGTH_SHORT).show();
+                       // Datato.setText(persianCalendar.getPersianYear() + "/" + persianCalendar.getPersianMonth() + "/" + persianCalendar.getPersianDay());
+
+                    }
+
+                    @Override
+                    public void onDisimised() {
+
+                    }
+
+                });
+
+        picker2.show();
         Button btnrec=(Button)findViewById(R.id.btnrec);
         TimePicker timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
-        simpleDatePicker.setAlpha(1f);
+        EditText edtduration=(EditText)findViewById(R.id.edtduration);
+        edtduration.setVisibility(View.VISIBLE);
         btnrec.setAlpha(1f);
         timePicker1.setAlpha(1f);
     }
@@ -224,10 +267,15 @@ public class RecordVoiceActivity extends AppCompatActivity {
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime());
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void btnsenddate(View view){
-        DatePicker simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
+        EditText edtduration=(EditText)findViewById(R.id.edtduration);
         TimePicker timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
-        String type="voice,"+simpleDatePicker.getYear()+","+simpleDatePicker.getMonth()+","+simpleDatePicker.getDayOfMonth()+","+timePicker1.getHour()+","+timePicker1.getMinute()+","+"300000";
+       // String type2=converter.getYear()+","+converter.getMonth()+","+converter.getDay();
+        String dur= String.valueOf(Integer.parseInt(edtduration.getText().toString())*60000);
+        String type="voice,"+converter.getYear()+","+converter.getMonth()+","+converter.getDay()+","+timePicker1.getHour()+","+timePicker1.getMinute()+","+dur;
+//        Log.e("fdfdfgg", type2 );
+//        Log.e("fdfdfgg", type );
         request(RecordVoiceActivity.this,type);
     }
 }

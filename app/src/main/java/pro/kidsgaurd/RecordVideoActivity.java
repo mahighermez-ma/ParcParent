@@ -129,7 +129,7 @@ public class RecordVideoActivity extends AppCompatActivity {
         timePicker1.setAlpha(1f);
     }
     public void ShowVideo() {
-        startActivity(new Intent(getApplicationContext(),vidGaleryActivity.class));
+        startActivity(new Intent(getApplicationContext(),VideoCategoryActivity.class));
 
     }
 

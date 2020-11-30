@@ -27,6 +27,7 @@ import java.util.HashMap;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class RecyclerviewImage extends RecyclerView.Adapter<RecyclerviewImage.ViewHolder> {
     ArrayList<String> imageUrls;
@@ -35,6 +36,7 @@ public class RecyclerviewImage extends RecyclerView.Adapter<RecyclerviewImage.Vi
     ArrayList<String> removeList=new ArrayList<String>();
     FloatingActionButton removefab;
     ArrayList<String> ids,dating;
+
 
     public RecyclerviewImage(ArrayList<String> imgurl, Context context, String typee, FloatingActionButton removefab,ArrayList<String> ids,ArrayList<String> dating) {
         imageUrls = imgurl;
@@ -65,20 +67,27 @@ public class RecyclerviewImage extends RecyclerView.Adapter<RecyclerviewImage.Vi
         long thumb = i*1000;
         RequestOptions options = new RequestOptions().frame(thumb);
         Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
+            if (removeList.contains(imageUrls.get(i))){
+                viewHolder.imgcheck.setVisibility(View.VISIBLE);
+            }else {
+                viewHolder.imgcheck.setVisibility(View.GONE);
+            }
         viewHolder.img.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
 
 
               //  viewHolder.img.setBackground(ContextCompat.getDrawable(context,R.drawable.backgradiant));
-                if (removeList.contains(imageUrls.get(i))){
-                    removeList.remove(imageUrls.get(i));
-                    long thumb = i*1000;
-                    RequestOptions options = new RequestOptions().frame(thumb);
-                    Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
-                }else {
+                if (!removeList.contains(imageUrls.get(i))){
                     removeList.add(imageUrls.get(i));
-                    viewHolder.img.setImageResource(R.drawable.backgradiant);
+                    //viewHolder.img.setImageResource(R.drawable.backgradiant);
+                    viewHolder.imgcheck.setVisibility(View.VISIBLE);
+                }else {removeList.remove(imageUrls.get(i));
+//                    long thumb = i*1000;
+//                    RequestOptions options = new RequestOptions().frame(thumb);
+//                    Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
+                    viewHolder.imgcheck.setVisibility(View.GONE);
+
                 }
                 if (removeList.size()==0){
                     removefab.setVisibility(View.GONE);
@@ -92,6 +101,7 @@ public class RecyclerviewImage extends RecyclerView.Adapter<RecyclerviewImage.Vi
         viewHolder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (removeList.size()==0){
                 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.GINGERBREAD){
                     RxPermissions rxPermissions=new RxPermissions((FragmentActivity) context);
                     rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET,Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -105,10 +115,58 @@ public class RecyclerviewImage extends RecyclerView.Adapter<RecyclerviewImage.Vi
                                 }
                             });
                 }else {
-                    goToUrl(imageUrls.get(i),context);}
+                    goToUrl(imageUrls.get(i),context);}}else {
+                    if (!removeList.contains(imageUrls.get(i))){
+                        removeList.add(imageUrls.get(i));
+                        //viewHolder.img.setImageResource(R.drawable.backgradiant);
+                        viewHolder.imgcheck.setVisibility(View.VISIBLE);
+                    }else {
+                        removeList.remove(imageUrls.get(i));
+//                    long thumb = i*1000;
+//                    RequestOptions options = new RequestOptions().frame(thumb);
+//                    Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
+                        viewHolder.imgcheck.setVisibility(View.GONE);
+
+                    }
+                    if (removeList.size()==0){
+                        removefab.setVisibility(View.GONE);
+                    }
+                    if (removeList.size()==1){
+                        removefab.setVisibility(View.VISIBLE);
+                    }
+
+                }
             }
 
-        });}else {
+        });}else if (typee.equals("vidcate")){
+            long thumb = i*1000;
+            RequestOptions options = new RequestOptions().frame(thumb);
+            Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
+            viewHolder.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context,VideoDateActivity.class);
+                    intent.putExtra("Type",dating.get(i));
+                    context.startActivity(intent);
+
+                }
+            });
+
+        }else if (typee.equals("viddate")){
+            viewHolder.txtdate.setText(dating.get(i).split(",,::")[1]);
+            long thumb = i*1000;
+            RequestOptions options = new RequestOptions().frame(thumb);
+            Glide.with(context).load(imageUrls.get(i)).apply(options).into(viewHolder.img);
+            viewHolder.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context,vidGaleryActivity.class);
+                    intent.putExtra("Type",dating.get(i));
+                    context.startActivity(intent);
+
+                }
+            });
+        }else {
             viewHolder.img.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {

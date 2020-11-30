@@ -5,10 +5,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,11 +45,29 @@ public class vidGaleryActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FloatingActionButton fabremove;
     RecyclerviewImage dataAdapter;
+    Intent intent3;
+    String type="";
+    String datess="";
+    private SwipeRefreshLayout swpref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vid_galery);
+        intent3=getIntent();
+        if (intent3!=null){
+        type=intent3.getStringExtra("Type").split(",,::")[2];
+        datess=intent3.getStringExtra("Type").split(",,::")[1];}
         fabremove=(FloatingActionButton)findViewById(R.id.fab);
+        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                swpref.setRefreshing(false);
+            }
+        });
         loadvideo();
         fabremove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,33 +154,36 @@ public class vidGaleryActivity extends AppCompatActivity {
                             JSONObject vidobject=new JSONObject(response);
                             if (vidobject.has("token")) {
                                 JSONArray viduri=vidobject.getJSONArray("VideoAddress");
+                                JSONArray Typeaaray=vidobject.getJSONArray("Type");
+                                JSONArray datearray=vidobject.getJSONArray("Date");
                                 int i=0;
                                 while (i<viduri.length()){
-                                    imageUrlList.add("https://im.kidsguard.pro"+viduri.getString(i));
-                                    //dating.add("");
-                                    ids.add("");
-                                    i++;
-                                }
-                                JSONArray datearray=vidobject.getJSONArray("Date");
-                                int b=0;
-                                while (b<datearray.length()){
-                                    String[] all=datearray.getString(b).split("T");
-                                    String[] date=all[0].split("-");
-                                    int year= Integer.parseInt(date[0]);
-                                    int mounth= Integer.parseInt(date[1]);
-                                    int day= Integer.parseInt(date[2]);
-                                    String[] time=all[1].split(":");
-                                    int hour= Integer.parseInt(time[0]);
-                                    int min= Integer.parseInt(time[1]);
-                                    Calendar mCalendar = new GregorianCalendar();
-                                    mCalendar.set(year,mounth,day,hour,min,00);
-                                    Calendar.Builder calendar=new Calendar.Builder();
-                                    calendar.setDate(year,mounth-1,day);
-                                    calendar.setTimeOfDay(hour,min,0);
-                                    calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
-                                    dating.add(String.valueOf(calendar.build().getTime()));
-                                    b++;
-                                }
+                                    if (Typeaaray.get(i).equals(type)){
+                                        String[] all=datearray.getString(i).split("T");
+                                        String[] date=all[0].split("-");
+                                        int year= Integer.parseInt(date[0]);
+                                        int mounth= Integer.parseInt(date[1]);
+                                        int day= Integer.parseInt(date[2]);
+                                        String[] time=all[1].split(":");
+                                        int hour= Integer.parseInt(time[0]);
+                                        int min= Integer.parseInt(time[1]);
+                                        Calendar mCalendar = new GregorianCalendar();
+                                        mCalendar.set(year,mounth,day,hour,min,00);
+                                        Calendar.Builder calendar=new Calendar.Builder();
+                                        calendar.setDate(year,mounth-1,day);
+                                        calendar.setTimeOfDay(hour,min,0);
+                                        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                        DateConverter converter = new DateConverter();
+                                        converter.gregorianToPersian(calendar.build().get(Calendar.YEAR), calendar.build().get(Calendar.MONTH)+1, calendar.build().get(Calendar.DAY_OF_MONTH));
+                                        String thisdate=String.valueOf(converter.getYear()+"/"+converter.getMonth()+"/"+converter.getDay());
+                                        if (thisdate.equals(datess)){
+                                            dating.add(String.valueOf(converter.getYear()+"/"+converter.getMonth()+"/"+converter.getDay()+"\n"+calendar.build().getTime().getHours()+":"+calendar.build().getTime().getMinutes()+":"+calendar.build().getTime().getSeconds()));
+                                        imageUrlList.add("https://im.kidsguard.pro"+viduri.getString(i));
+                                        //dating.add("");
+                                            ids.add("");}}
+                                            i++;
+                                    }
+
                                 recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
                                 gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                                 recyclerView.setLayoutManager(gridLayoutManager);

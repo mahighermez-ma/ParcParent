@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swpref"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -69,29 +74,37 @@
         android:id="@+id/line4"
 
         >
-        <DatePicker
-            android:id="@+id/simpleDatePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:datePickerMode="spinner"
-            android:spinnersShown="false"
-            android:alpha="0"
-            android:padding="10dp"
-            android:layout_margin="30dp"
-            />
+
         <TimePicker
             android:id="@+id/timePicker1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/simpleDatePicker"
             android:layout_marginTop="30dp"
             android:alpha="0"
             android:layout_margin="30dp"
             />
-        <Button
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputTextPhoneReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/timePicker1"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/edtduration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="زمان به دقیقه"
+                android:ems="10"
+                android:visibility="gone"
+                android:fontFamily="@font/verdana"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inputTextPhoneReg"
             android:onClick="btnsenddate"
             tools:ignore="OnClick"
             android:theme="@style/PrimaryFlatButton"
@@ -108,4 +121,4 @@
     </RelativeLayout>
 
 </RelativeLayout></ScrollView>
-</RelativeLayout>
+</RelativeLayout></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
