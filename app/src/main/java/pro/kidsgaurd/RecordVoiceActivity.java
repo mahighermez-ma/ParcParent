@@ -10,13 +10,19 @@ import ir.hamsaa.persiandatepicker.Listener;
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog;
 import ir.hamsaa.persiandatepicker.util.PersianCalendar;
 
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -24,8 +30,10 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.MediaController;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,30 +60,104 @@ public class RecordVoiceActivity extends AppCompatActivity {
     ArrayList<String> voiceurl=new ArrayList<String>();
     ArrayList<String> voiceNmae=new ArrayList<String>();
     RecyclerView recyclerViewgetvoice;
-    private SwipeRefreshLayout swpref;
+//    private SwipeRefreshLayout swpref;
     private DateConverter converter;
-    FloatingActionButton fabremove;
+    FloatingActionButton fabremove,fab2;
     private VoiceAdapterRecycler adapter ;
-
+    DownloadManager downloadManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_voice);
-        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+//        swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
         fabremove=(FloatingActionButton)findViewById(R.id.fab);
-        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        fab2=(FloatingActionButton)findViewById(R.id.fab2);
+//        swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                finish();
+//                startActivity(getIntent());
+//                swpref.setRefreshing(false);
+//            }
+//        });
+        geturls(RecordVoiceActivity.this);
+        fab2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRefresh() {
+            public void onClick(View view) {
+                int i=0;
+                while (i<adapter.getremovelist().size()){
+                    downloadFile(adapter.getremovelist().get(i),voiceNmae.get(voiceurl.indexOf(adapter.getremovelist().get(i)))+".mp3");
+                    i++;
+                }
                 finish();
                 startActivity(getIntent());
-                swpref.setRefreshing(false);
             }
         });
-        geturls(RecordVoiceActivity.this);
         fabremove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("ifgjjffd", String.valueOf(adapter.getremovelist()));
+                JSONObject jsonObject=new JSONObject();
+                JSONArray jsonArray=new JSONArray();
+                int ii=0;
+                while (ii<adapter.getremovelist().size()){
+                    jsonArray.put("/static/"+adapter.getremovelist().get(ii).split("/static/")[1]);
+                    ii++;
+                }
+                CtokenDataBaseManager ctokenDataBaseManager=new CtokenDataBaseManager(RecordVoiceActivity.this);
+                try {
+                    jsonObject.put("token",ctokenDataBaseManager.getctoken());
+                    jsonObject.put("voiceUrl",jsonArray);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //send to server
+                Log.e("fuuuuuuuuuuuuuuukit", jsonObject.toString() );
+                AlertDialog.Builder alertClose=new AlertDialog.Builder(RecordVoiceActivity.this);
+                alertClose.setMessage("Do you want to delete the videos?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //send
+                                StringRequest stringRequest=new StringRequest(Request.Method.POST,"https://im.kidsguard.pro/api/delete-voice/",
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                Toast.makeText(RecordVoiceActivity.this, "Successfully removed", Toast.LENGTH_SHORT).show();
+//                                                loadvideo();
+                                                finish();
+                                                startActivity(getIntent());
+
+
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+//                                        progressDialog.dismiss();
+                                        Alert.shows(RecordVoiceActivity.this,"","please check the connection","ok","");
+                                        SendEror.sender(RecordVoiceActivity.this,error.toString());
+                                    }
+
+                                })
+                                {
+                                    @Override
+                                    protected Map<String, String> getParams(){
+                                        Map<String,String> params=new HashMap<String, String>();
+                                        params.put("data",jsonObject.toString());
+                                        return params;
+                                    }
+                                };
+                                RequestQueue requestQueue= Volley.newRequestQueue(RecordVoiceActivity.this);
+                                requestQueue.add(stringRequest);
+
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                       geturls(RecordVoiceActivity.this);
+
+                    }
+                }).show();
             }
         });
 
@@ -213,7 +295,7 @@ public class RecordVoiceActivity extends AppCompatActivity {
 
             recyclerViewgetvoice=(RecyclerView)findViewById(R.id.voiceRecyclerView);
 
-            adapter = new VoiceAdapterRecycler(voiceurl,voiceNmae,RecordVoiceActivity.this,fabremove);
+            adapter = new VoiceAdapterRecycler(voiceurl,voiceNmae,RecordVoiceActivity.this,fabremove,fab2);
             recyclerViewgetvoice.setAdapter(adapter);
             LayoutAnimationController animation =
                     AnimationUtils.loadLayoutAnimation(RecordVoiceActivity.this, pro.kidsgaurd.R.anim.layout_animation_fall_down);
@@ -286,6 +368,29 @@ public class RecordVoiceActivity extends AppCompatActivity {
 //        Log.e("fdfdfgg", type2 );
 //        Log.e("fdfdfgg", type );
         request(RecordVoiceActivity.this,type);
+    }
+    public void downloadFile(String path,String subpath) {
+
+        Uri uri=Uri.parse(path);
+        downloadManager=(DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request request=new DownloadManager.Request(uri);
+        request.setTitle("downloading");
+        request.setDescription("wait");
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,subpath);
+        long donid=downloadManager.enqueue(request);
+        Toast.makeText(this, "please wait one minute", Toast.LENGTH_SHORT).show();
+        BroadcastReceiver time=new BroadcastReceiver() {
+            @RequiresApi(api = 29)
+            @Override
+            public void onReceive(Context context, Intent intent) {
+               // Toast.makeText(context, "file "+subpath+" downloaded ", Toast.LENGTH_SHORT).show();
+
+
+            }
+        };
+        IntentFilter intentFilter=new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        this.registerReceiver(time,intentFilter);
     }
 }
 

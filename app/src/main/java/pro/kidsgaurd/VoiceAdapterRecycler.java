@@ -41,15 +41,16 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
     SeekBar mSeekBar;
     private Handler mHandler;
     private Runnable mRunnable;
-    FloatingActionButton removefab;
+    FloatingActionButton removefab,fab2;
     ArrayList<String> removeList=new ArrayList<String>();
     int i=0;
 
-    public VoiceAdapterRecycler(ArrayList<String> voiceUrl, ArrayList<String> voiceName, Context context,FloatingActionButton removefab) {
+    public VoiceAdapterRecycler(ArrayList<String> voiceUrl, ArrayList<String> voiceName, Context context,FloatingActionButton removefab,FloatingActionButton fab2) {
         this.voiceUrl = voiceUrl;
         this.voiceName = voiceName;
         this.context = context;
         this.removefab=removefab;
+        this.fab2=fab2;
 
     }
 
@@ -176,6 +177,7 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
                     imgcheck.setVisibility(View.VISIBLE);
                 if (removeList.size()==0){
                     removefab.setVisibility(View.VISIBLE);
+                    fab2.setVisibility(View.VISIBLE);
                     removeList.add(voiceUrl.get(position));
 
                 }else {
@@ -185,6 +187,7 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
                     removeList.remove(voiceUrl.get(position));
                     if (removeList.size()==0){
                         removefab.setVisibility(View.GONE);
+                        fab2.setVisibility(View.GONE);
                     }
                 }
                 return true;
@@ -199,6 +202,7 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
                         imgcheck.setVisibility(View.VISIBLE);
                         if (removeList.size()==0){
                             removefab.setVisibility(View.VISIBLE);
+                            fab2.setVisibility(View.VISIBLE);
                             removeList.add(voiceUrl.get(position));
 
                         }else {
@@ -208,6 +212,7 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
                         removeList.remove(voiceUrl.get(position));
                         if (removeList.size()==0){
                             removefab.setVisibility(View.GONE);
+                            fab2.setVisibility(View.GONE);
                         }
                     }
                 }
