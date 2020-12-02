@@ -12,6 +12,20 @@
     tools:context=".RecordVoiceActivity"
     android:background="@drawable/backgradiant"
     android:layoutDirection="ltr">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="36dp"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:src="@android:drawable/ic_menu_delete"
+        app:rippleColor="@color/colorPrimary"
+        android:visibility="gone"
+        />
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,4 +135,5 @@
     </RelativeLayout>
 
 </RelativeLayout></ScrollView>
+
 </RelativeLayout></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

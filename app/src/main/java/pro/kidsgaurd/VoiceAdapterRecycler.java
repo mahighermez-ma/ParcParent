@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,18 +34,22 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
     private ArrayList<String> voiceName;
     private Context context;
     boolean isPLAYING= false;
+    ImageView imgcheck;
     MediaPlayer mp;
     Button btnvoice;
     int positionn=0;
     SeekBar mSeekBar;
     private Handler mHandler;
     private Runnable mRunnable;
+    FloatingActionButton removefab;
+    ArrayList<String> removeList=new ArrayList<String>();
     int i=0;
 
-    public VoiceAdapterRecycler(ArrayList<String> voiceUrl, ArrayList<String> voiceName, Context context) {
+    public VoiceAdapterRecycler(ArrayList<String> voiceUrl, ArrayList<String> voiceName, Context context,FloatingActionButton removefab) {
         this.voiceUrl = voiceUrl;
         this.voiceName = voiceName;
         this.context = context;
+        this.removefab=removefab;
 
     }
 
@@ -69,6 +74,8 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
         mp=new MediaPlayer();
         mSeekBar = cardView.findViewById(R.id.seek_bar);
         mSeekBar.setProgress(0);
+        imgcheck=(ImageView)cardView.findViewById(R.id.imgcheck);
+
         btnvoice=(Button)cardView.findViewById(R.id.btnvoice);
         if (Build.VERSION.SDK_INT<Build.VERSION_CODES.JELLY_BEAN){
             btnvoice.setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.ic_baseline_play_arrow_24));
@@ -161,6 +168,51 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
 
             }
         });
+        cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                imgcheck=(ImageView)cardView.findViewById(R.id.imgcheck);
+                if (imgcheck.getVisibility()==View.GONE){
+                    imgcheck.setVisibility(View.VISIBLE);
+                if (removeList.size()==0){
+                    removefab.setVisibility(View.VISIBLE);
+                    removeList.add(voiceUrl.get(position));
+
+                }else {
+                    removeList.add(voiceUrl.get(position));
+                }}else {
+                    imgcheck.setVisibility(View.GONE);
+                    removeList.remove(voiceUrl.get(position));
+                    if (removeList.size()==0){
+                        removefab.setVisibility(View.GONE);
+                    }
+                }
+                return true;
+            }
+        });
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgcheck=(ImageView)cardView.findViewById(R.id.imgcheck);
+                if (removeList.size()>0){
+                    if (imgcheck.getVisibility()==View.GONE){
+                        imgcheck.setVisibility(View.VISIBLE);
+                        if (removeList.size()==0){
+                            removefab.setVisibility(View.VISIBLE);
+                            removeList.add(voiceUrl.get(position));
+
+                        }else {
+                            removeList.add(voiceUrl.get(position));
+                        }}else {
+                        imgcheck.setVisibility(View.GONE);
+                        removeList.remove(voiceUrl.get(position));
+                        if (removeList.size()==0){
+                            removefab.setVisibility(View.GONE);
+                        }
+                    }
+                }
+            }
+        });
 
     }
 
@@ -230,7 +282,9 @@ public class VoiceAdapterRecycler extends RecyclerView.Adapter<VoiceAdapterRecyc
         };
         mHandler.postDelayed(mRunnable,3000);
     }
-
+    public ArrayList<String> getremovelist(){
+        return removeList;
+    }
 }
 
 

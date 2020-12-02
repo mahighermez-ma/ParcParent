@@ -21,6 +21,7 @@
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:id="@+id/btnvoice"
+            android:layout_toRightOf="@+id/imgcheck"
             android:layout_marginLeft="10dp"
 
             />
@@ -46,7 +47,14 @@
             android:layout_below="@+id/seek_bar"
             />
 
-
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_tick"
+            android:id="@+id/imgcheck"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"/>
 
 
 

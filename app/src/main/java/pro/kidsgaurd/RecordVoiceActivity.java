@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,12 +54,15 @@ public class RecordVoiceActivity extends AppCompatActivity {
     RecyclerView recyclerViewgetvoice;
     private SwipeRefreshLayout swpref;
     private DateConverter converter;
+    FloatingActionButton fabremove;
+    private VoiceAdapterRecycler adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_voice);
         swpref=(SwipeRefreshLayout)findViewById(R.id.swpref);
+        fabremove=(FloatingActionButton)findViewById(R.id.fab);
         swpref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -68,7 +72,12 @@ public class RecordVoiceActivity extends AppCompatActivity {
             }
         });
         geturls(RecordVoiceActivity.this);
-
+        fabremove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("ifgjjffd", String.valueOf(adapter.getremovelist()));
+            }
+        });
 
 
 
@@ -204,7 +213,7 @@ public class RecordVoiceActivity extends AppCompatActivity {
 
             recyclerViewgetvoice=(RecyclerView)findViewById(R.id.voiceRecyclerView);
 
-            VoiceAdapterRecycler adapter = new VoiceAdapterRecycler(voiceurl,voiceNmae,RecordVoiceActivity.this);
+            adapter = new VoiceAdapterRecycler(voiceurl,voiceNmae,RecordVoiceActivity.this,fabremove);
             recyclerViewgetvoice.setAdapter(adapter);
             LayoutAnimationController animation =
                     AnimationUtils.loadLayoutAnimation(RecordVoiceActivity.this, pro.kidsgaurd.R.anim.layout_animation_fall_down);
